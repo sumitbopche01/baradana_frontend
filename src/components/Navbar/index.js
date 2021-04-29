@@ -52,9 +52,11 @@ function Navbar() {
         </BeltRight>
       </NavbarBelt>
       <NavbarMain>
-        <MainLeft></MainLeft>
-        <MainFill></MainFill>
-        <MainRight></MainRight>
+        <p>VEGETABLES</p>
+        <p>FRUITS</p>
+        <p>GROCERIES</p>
+        <p>DAIRY</p>
+        <p>SPICES</p>
       </NavbarMain>
     </NavbarContainer>
   );

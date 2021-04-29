@@ -17,8 +17,21 @@ export const NavbarBelt = styled.div`
 export const NavbarMain = styled.div`
   background-color: #232f3e;
   height: 39px;
-  padding-top: 0;
   z-index: 4;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  font-size: 18px;
+
+  > p {
+    padding-left: 15px;
+
+    :hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      color: #99d98c;
+    }
+  }
 `;
 
 export const BeltLeft = styled.div`
