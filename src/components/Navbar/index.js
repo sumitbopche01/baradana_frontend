@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-
+import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
 import {
   NavbarBelt,
   NavbarContainer,
@@ -11,8 +11,11 @@ import {
   MainLeft,
   MainFill,
   MainRight,
+  NavTools,
+  Cart,
 } from "./NavbarElements";
 import { Button } from "@material-ui/core";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 function Navbar() {
   const [input, setInput] = useState("");
@@ -30,12 +33,23 @@ function Navbar() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               type="text"
-              placeholder="Search any food item"
+              placeholder="Search for products, brands and more"
             />
-          <Button><SearchIcon/></Button>
+            <Button>
+              <SearchIcon />
+            </Button>
           </form>
         </BeltFill>
-        <BeltRight></BeltRight>
+        <BeltRight>
+          <NavTools>
+            <p>Sumit</p>
+            <ExpandMoreOutlinedIcon />
+            <Cart>
+              <ShoppingCartIcon />
+              <p>Cart</p>
+            </Cart>
+          </NavTools>
+        </BeltRight>
       </NavbarBelt>
       <NavbarMain>
         <MainLeft></MainLeft>

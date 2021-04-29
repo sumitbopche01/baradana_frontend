@@ -29,10 +29,11 @@ export const BeltLeft = styled.div`
 
 export const BeltFill = styled.div`
   display: flex;
+  align-items: baseline;
   width: 60%;
   margin-left: 80px;
   margin-top: -2px;
-  
+
   > form {
     display: flex;
     height: 50px;
@@ -45,9 +46,9 @@ export const BeltFill = styled.div`
     border-radius: 3px;
     padding: 10px;
     outline: none;
-    text-align:center;
+    text-align: center;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   > form > button {
@@ -78,3 +79,34 @@ export const MainLeft = styled.div``;
 export const MainFill = styled.div``;
 
 export const MainRight = styled.div``;
+
+export const NavTools = styled.div`
+  display: flex;
+  margin-left: 80px;
+  justify-content: flex-end;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+
+  > .MuiSvgIcon-root {
+    margin-left: 0px;
+
+    :hover {
+      background-color: orange;
+    }
+  }
+`;
+
+export const Cart = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 60px;
+`;
+
+// export const LoggedInUser = styled.div`
+//   padding-top: 13px;
+//   font-size: 18px;
+//   margin-top: 2.1px;
+//   margin-left: 15px;
+// `;
