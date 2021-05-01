@@ -5,10 +5,17 @@ import groceries from "../images/groceries1.png";
 export const BannerData = [
   {
     title: "Get Fresh Veggies from nearby farm to your doorstep",
-    discount: "at 40% less price than market price",
+    discount: "40%",
     imgUrl: veg,
     id: 1,
     bgColor: "#d8f3dc",
+  },
+  {
+    title: "Get groceries with minimal processing for authentic flavours",
+    discount: "25%",
+    imgUrl: groceries,
+    id: 3,
+    bgColor: "#b8dbd9",
   },
   {
     title: "What if you can get pure milk instead of white water??",
@@ -16,12 +23,5 @@ export const BannerData = [
     imgUrl: milk,
     id: 2,
     bgColor: "#fae6e7",
-  },
-  {
-    title: "Get groceries with minimal processing",
-    discount: "at 25% less price than market price",
-    imgUrl: groceries,
-    id: 3,
-    bgColor: "#b8dbd9",
   },
 ];
