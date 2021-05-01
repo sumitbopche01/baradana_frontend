@@ -12,7 +12,7 @@ function Poster() {
         autoPlay={true}
         dynamicHeight={false}
         showThumbs={false}
-        interval={2000}
+        interval={3000}
         infiniteLoop={true}
       >
         {BannerData.map((banner) => (
