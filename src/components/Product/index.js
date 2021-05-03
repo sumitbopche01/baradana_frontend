@@ -12,7 +12,7 @@ import {
 import Garlic from "../../images/garlic.png";
 import { Button } from "@material-ui/core";
 
-let vegetablesList = [
+let productsList = [
   {
     title: "Palak (Spinach) Leafy",
     imgUrl: Garlic,
@@ -93,15 +93,15 @@ let vegetablesList = [
   },
 ];
 
-function Vegetables() {
+const Product = ({ title }) => {
   return (
     <CategoryContainer>
       <Heading>
-        <p>Vegetables</p>
+        <p>{title}</p>
         <hr />
       </Heading>
       <DataContainer>
-        {vegetablesList.map((prod) => (
+        {productsList.map((prod) => (
           <CardContainer key={prod.title}>
             <ProductImg>
               <img src={prod.imgUrl} alt="" />
@@ -127,6 +127,6 @@ function Vegetables() {
       </DataContainer>
     </CategoryContainer>
   );
-}
+};
 
-export default Vegetables;
+export default Product;

@@ -1,13 +1,13 @@
 import React from "react";
-import Vegetables from "../Vegetables";
+import Product from "../Product";
 import { ProductsContainer } from "./ProductsElements";
 
-function Products() {
+function ProductCategories() {
   return (
     <ProductsContainer>
-      <Vegetables />
+      <Product title="Vegetables" />
     </ProductsContainer>
   );
 }
 
-export default Products;
+export default ProductCategories;
