@@ -62,6 +62,10 @@ export const ProductImg = styled.div`
     width: auto;
     vertical-align: middle;
   }
+
+  :hover {
+    transform: translate(0px, -5px);
+  }
 `;
 
 export const Heading = styled.div`
