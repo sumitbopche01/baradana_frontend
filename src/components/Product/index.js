@@ -10,12 +10,18 @@ import {
   ProductUnits,
 } from "./ProductElements";
 import Garlic from "../../images/garlic.png";
+import Palak from "../../images/palak.png";
+import ClusterBeans from "../../images/clusterBeans.png";
+import BabyCorn from "../../images/babyCorn.png";
+import Ginger from "../../images/ginger.png";
+import PumpkinYellow from "../../images/pumpkinYellow.png";
+
 import { Button } from "@material-ui/core";
 
 let productsList = [
   {
     title: "Palak (Spinach) Leafy",
-    imgUrl: Garlic,
+    imgUrl: Palak,
     category: "vegetables",
     subCategory: "seasonal",
     quantity: 500,
@@ -28,7 +34,7 @@ let productsList = [
   },
   {
     title: "Baby Corn | Box",
-    imgUrl: Garlic,
+    imgUrl: BabyCorn,
     category: "vegetables",
     subCategory: "exotic",
     quantity: 1,
@@ -41,7 +47,7 @@ let productsList = [
   },
   {
     title: "Cluster Beans | Gawar",
-    imgUrl: Garlic,
+    imgUrl: ClusterBeans,
     category: "vegetables",
     subCategory: "exotic",
     quantity: 250,
@@ -54,7 +60,7 @@ let productsList = [
   },
   {
     title: "Ginger",
-    imgUrl: Garlic,
+    imgUrl: Ginger,
     category: "vegetables",
     subCategory: "herbs",
     quantity: 250,
@@ -66,8 +72,8 @@ let productsList = [
     chemicalResidueFree: true,
   },
   {
-    title: "Pumpkin Green",
-    imgUrl: Garlic,
+    title: "Pumpkin Yellow",
+    imgUrl: PumpkinYellow,
     category: "vegetables",
     subCategory: "seasonal",
     quantity: 1,
