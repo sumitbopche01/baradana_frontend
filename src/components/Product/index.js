@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   DataContainer,
   CardContainer,
@@ -10,122 +10,66 @@ import {
   ProductUnits,
 } from "./ProductElements";
 import Garlic from "../../images/garlic.png";
-import Palak from "../../images/palak.png";
 import ClusterBeans from "../../images/clusterBeans.png";
 import BabyCorn from "../../images/babyCorn.png";
 import Ginger from "../../images/ginger.png";
 import PumpkinYellow from "../../images/pumpkinYellow.png";
 
 import { Button } from "@material-ui/core";
+import { db } from "../../firebase";
 
-let productsList = [
-  {
-    title: "Palak (Spinach) Leafy",
-    imgUrl: Palak,
-    category: "vegetables",
-    subCategory: "seasonal",
-    quantity: 500,
-    unit: "gm",
-    price: 40,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Baby Corn | Box",
-    imgUrl: BabyCorn,
-    category: "vegetables",
-    subCategory: "exotic",
-    quantity: 1,
-    unit: "pc",
-    price: 79,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Cluster Beans | Gawar",
-    imgUrl: ClusterBeans,
-    category: "vegetables",
-    subCategory: "exotic",
-    quantity: 250,
-    unit: "gm",
-    price: 250,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Baby Corn | Box",
-    imgUrl: BabyCorn,
-    category: "vegetables",
-    subCategory: "exotic",
-    quantity: 1,
-    unit: "pc",
-    price: 79,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Ginger",
-    imgUrl: Ginger,
-    category: "vegetables",
-    subCategory: "herbs",
-    quantity: 250,
-    unit: "gm",
-    price: 1,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Pumpkin Yellow",
-    imgUrl: PumpkinYellow,
-    category: "vegetables",
-    subCategory: "seasonal",
-    quantity: 1,
-    units: "kg",
-    price: 80,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Garlic",
-    imgUrl: Garlic,
-    category: "vegetables",
-    subCategory: "herbs",
-    quantity: 250,
-    unit: "gm",
-    price: 30,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-  {
-    title: "Baby Corn | Box",
-    imgUrl: BabyCorn,
-    category: "vegetables",
-    subCategory: "exotic",
-    quantity: 1,
-    unit: "pc",
-    price: 79,
-    currencySymbol: "₹",
-    from: "",
-    certifiedOrganic: false,
-    chemicalResidueFree: true,
-  },
-];
+// let productsList = [
+//   {
+//     title: "Palak (Spinach) Leafy",
+//     imgUrl: "https://baradana-images.s3.ap-south-1.amazonaws.com/palak.png",
+//     category: "vegetables",
+//     subCategory: "seasonal",
+//     quantity: 500,
+//     unit: "gm",
+//     price: 40,
+//     currencySymbol: "₹",
+//     from: "",
+//     certifiedOrganic: false,
+//     chemicalResidueFree: true,
+//   },
+// ];
 
 const Product = ({ title }) => {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    console.log("use effect called");
+    db.collection("products")
+      .where("category", "==", "vegetables")
+      .onSnapshot((snapshot) => {
+        setProductList(
+          snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
+        );
+        console.log("got data");
+        console.log(productList);
+      });
+  }, []);
+
+  const addData = (e) => {
+    console.log("add data");
+    e.preventDefault();
+    let d = {
+      title: "Palak (Spinach) Leafy",
+      imgUrl: "https://baradana-images.s3.ap-south-1.amazonaws.com/palak.png",
+      category: "vegetables",
+      subCategory: "seasonal",
+      quantity: 500,
+      unit: "gm",
+      price: 40,
+      currencySymbol: "₹",
+      from: "",
+      certifiedOrganic: false,
+      chemicalResidueFree: true,
+    };
+
+    db.collection("products").add(d);
+  };
+
   return (
     <CategoryContainer>
       <Heading>
@@ -133,27 +77,27 @@ const Product = ({ title }) => {
         <hr />
       </Heading>
       <DataContainer>
-        {productsList.map((prod) => (
-          <CardContainer key={prod.title}>
+        {productList.map((prod) => (
+          <CardContainer key={prod.id}>
             <ProductImg>
-              <img src={prod.imgUrl} alt="" />
+              <img src={prod.data.imgUrl} alt="" />
             </ProductImg>
-            <ProductTitle>{prod.title}</ProductTitle>
+            <ProductTitle>{prod.data.title}</ProductTitle>
             <ProductPrice>
               Price:{" "}
               <strong>
-                {prod.currencySymbol}
-                {prod.price}
+                {prod.data.currencySymbol}
+                {prod.data.price}
               </strong>
             </ProductPrice>
             <ProductUnits>
               Units:{" "}
               <strong>
-                {prod.quantity} {prod.unit}
+                {prod.data.quantity} {prod.data.unit}
               </strong>
             </ProductUnits>
 
-            <Button>Add To Cart</Button>
+            <Button onClick={addData}>Add To Cart</Button>
           </CardContainer>
         ))}
       </DataContainer>
