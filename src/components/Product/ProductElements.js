@@ -3,7 +3,20 @@ import styled from "styled-components";
 export const DataContainer = styled.div`
   color: white;
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+  overflow: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+  // Hide scrollbar in diff browsers
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   > p {
     font-size: 18px;
     letter-spacing: 1px;
@@ -16,11 +29,10 @@ export const CardContainer = styled.div`
   background-color: white;
   color: black;
   cursor: pointer;
-  border-radius: 2px;
-  width: 238px;
+  border-radius: 4px;
   margin: 0 7px 16px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 5px;
   line-height: 25px;
 
