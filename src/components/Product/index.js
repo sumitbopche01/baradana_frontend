@@ -9,12 +9,6 @@ import {
   ProductPrice,
   ProductUnits,
 } from "./ProductElements";
-import Garlic from "../../images/garlic.png";
-import ClusterBeans from "../../images/clusterBeans.png";
-import BabyCorn from "../../images/babyCorn.png";
-import Ginger from "../../images/ginger.png";
-import PumpkinYellow from "../../images/pumpkinYellow.png";
-
 import { Button } from "@material-ui/core";
 import { db } from "../../firebase";
 
@@ -34,13 +28,14 @@ import { db } from "../../firebase";
 //   },
 // ];
 
-const Product = ({ title }) => {
+const Product = ({ title, category }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     console.log("use effect called");
     db.collection("products")
-      .where("category", "==", "vegetables")
+      .where("category", "==", category)
+      .limit(6)
       .onSnapshot((snapshot) => {
         setProductList(
           snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() }))
@@ -54,17 +49,18 @@ const Product = ({ title }) => {
     console.log("add data");
     e.preventDefault();
     let d = {
-      title: "Palak (Spinach) Leafy",
-      imgUrl: "https://baradana-images.s3.ap-south-1.amazonaws.com/palak.png",
-      category: "vegetables",
-      subCategory: "seasonal",
-      quantity: 500,
+      title: "Mint Powder",
+      imgUrl:
+        "https://baradana-images.s3.ap-south-1.amazonaws.com/mintPowder.png",
+      category: "spices",
+      subCategory: "spices",
+      quantity: 50,
       unit: "gm",
-      price: 40,
+      price: 70,
       currencySymbol: "₹",
       from: "",
       certifiedOrganic: false,
-      chemicalResidueFree: true,
+      chemicalResidueFree: false,
     };
 
     db.collection("products").add(d);

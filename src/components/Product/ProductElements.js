@@ -9,7 +9,7 @@ export const DataContainer = styled.div`
   overflow: hidden;
   overflow-x: auto;
   scroll-behavior: smooth;
-
+  padding-left: 50px;
   // Hide scrollbar in diff browsers
   ::-webkit-scrollbar {
     display: none;
