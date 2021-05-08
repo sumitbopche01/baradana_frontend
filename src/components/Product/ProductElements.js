@@ -4,12 +4,11 @@ export const DataContainer = styled.div`
   color: white;
   display: flex;
   flex-wrap: nowrap;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
-  overflow: hidden;
-  overflow-x: auto;
+  overflow: auto hidden;
+  /* overflow-x: auto; */
   scroll-behavior: smooth;
-  padding-left: 50px;
   // Hide scrollbar in diff browsers
   ::-webkit-scrollbar {
     display: none;
