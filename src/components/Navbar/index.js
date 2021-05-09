@@ -8,17 +8,19 @@ import {
   BeltLeft,
   BeltFill,
   BeltRight,
-  MainLeft,
-  MainFill,
-  MainRight,
   NavTools,
   Cart,
+  LoginContainer,
 } from "./NavbarElements";
 import { Button } from "@material-ui/core";
+import { useAuthState } from "react-firebase-hooks/auth";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { auth } from "../../firebase";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [input, setInput] = useState("");
+  const [user, loading] = useAuthState(auth);
 
   return (
     <NavbarContainer>
@@ -42,8 +44,16 @@ function Navbar() {
         </BeltFill>
         <BeltRight>
           <NavTools>
-            <p>Sumit</p>
-            <ExpandMoreOutlinedIcon />
+            <LoginContainer>
+              <p>
+                {user?.displayName || (
+                  <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
+                    Login
+                  </Link>
+                )}
+              </p>
+              {user && <ExpandMoreOutlinedIcon />}
+            </LoginContainer>
             <Cart>
               <ShoppingCartIcon />
               <p>Cart</p>
