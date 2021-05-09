@@ -123,3 +123,7 @@ export const Cart = styled.div`
 //   margin-top: 2.1px;
 //   margin-left: 15px;
 // `;
+
+export const LoginContainer = styled.div`
+  cursor: pointer;
+`;
