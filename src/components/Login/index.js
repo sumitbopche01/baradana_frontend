@@ -1,57 +1,96 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import { auth, provider } from "../../firebase";
-
+import { useHistory } from "react-router-dom";
+import {
+  FormContent,
+  FormLabel,
+  FormInput,
+  FormButton,
+  Container,
+  FormWrap,
+  FormH1,
+  Text,
+  Form,
+  LoginContainer,
+  LoginInnerContainer,
+  EmailPasswordLogin,
+} from "./LoginElements";
 function Login() {
-  const SignIn = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let history = useHistory();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const EmailPasswordSignIn = (e) => {
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((result) => {
+    //     console.log("user ", result.user);
+    //   })
+    //   .catch((error) => alert(error));
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log("user ", result.user);
+        alert(JSON.stringify(result.user));
+        history.push('/');
+      })
+      .catch((error) => alert(error));
+  };
+
+  const GoogleSignIn = (e) => {
     e.preventDefault();
-    auth.signInWithPopup(provider).catch((error) => alert(error.message));
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log("user details");
+        console.log(result.user);
+      })
+      .catch((error) => alert(error.message));
   };
 
   return (
     <LoginContainer>
       <LoginInnerContainer>
         <img
-          src="https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd.jpg"
-          alt=""
+          src="https://baradana-images.s3.ap-south-1.amazonaws.com/baraDanaLogo.png"
+          alt="Baradana"
         />
-
-        <h1>Sign in to Baradana</h1>
-        <p>baradana, your health partner</p>
-
-        <Button onClick={SignIn}>Sign in with Google</Button>
+        <EmailPasswordLogin>
+          <FormContent>
+            <Form onSubmit={handleSubmit}>
+              <FormLabel htmlFor="for">Email</FormLabel>
+              <FormInput
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></FormInput>
+              <FormLabel htmlFor="for">Password</FormLabel>
+              <FormInput
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></FormInput>
+              <FormButton type="submit" onClick={EmailPasswordSignIn}>
+                Sign In
+              </FormButton>
+              {/* <Text>Forgot password</Text>
+                <a href="/signup">
+                  <Text>Sign Up</Text>
+                </a> */}
+            </Form>
+          </FormContent>
+        </EmailPasswordLogin>
+        <Button onClick={GoogleSignIn}>Sign in with Google</Button>
       </LoginInnerContainer>
     </LoginContainer>
   );
 }
 
 export default Login;
-
-const LoginContainer = styled.div`
-  background-color: #f8f8f8;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-`;
-
-const LoginInnerContainer = styled.div`
-  padding: 100px;
-  text-align: center;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
-  > img {
-    object-fit: contain;
-    height: 100px;
-    margin-bottom: 40px;
-  }
-
-  > button {
-    margin-top: 50px;
-    text-transform: inherit !important;
-    background-color: #0a8d48 !important;
-    color: white;
-  }
-`;

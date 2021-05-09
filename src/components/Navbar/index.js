@@ -46,7 +46,7 @@ function Navbar() {
           <NavTools>
             <LoginContainer>
               <p>
-                {user?.displayName || (
+                {user?.email || (
                   <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
                     Login
                   </Link>
